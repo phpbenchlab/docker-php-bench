@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: bench-nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./fpm-docker/public:/var/www/html:ro
+      - ./fpm-docker/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - php-bench-net
+    depends_on:
+      - fpm
+  fpm:
+    build: ./fpm-docker
+    container_name: bench-fpm
+    networks:
+      - php-bench-net
+networks:
+  php-bench-net:
+    external: true

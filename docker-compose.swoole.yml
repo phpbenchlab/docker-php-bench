@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  swoole:
+    build: ./swoole-docker
+    container_name: bench-swoole
+    ports:
+      - "9501:9501"
+    networks:
+      - php-bench-net
+    depends_on:
+      - mysql
+networks:
+  php-bench-net:
+    external: true

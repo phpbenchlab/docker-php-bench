@@ -1,0 +1,8 @@
+services:
+  roadrunner:
+    build: ./rr-docker
+    container_name: bench-roadrunner
+    ports:
+      - "8081:8081"
+    networks:
+      - php-bench-net

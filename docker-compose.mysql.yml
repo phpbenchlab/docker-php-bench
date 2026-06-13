@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: bench-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: bench_db
+      MYSQL_USER: bench_db
+      MYSQL_PASSWORD: LbiAaSBhGHwXGcWx
+    ports:
+      - "3306:3306"
+    networks:
+      - php-bench-net
+    volumes:
+      - mysql_data:/var/lib/mysql
+    command: --max_connections=500 --performance_schema=0
+volumes:
+  mysql_data:
+networks:
+  php-bench-net:
+    external: true

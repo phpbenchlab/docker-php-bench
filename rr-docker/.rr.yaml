@@ -1,0 +1,11 @@
+version: '3'
+server:
+  command: "php worker.php"
+  relay: pipes
+http:
+  address: 0.0.0.0:8081
+  pool:
+    num_workers: 20
+logs:
+  mode: production
+  level: error
